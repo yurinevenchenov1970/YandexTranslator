@@ -2,4 +2,6 @@
     <string name="app_name">YandexTranslator</string>
     <string name="hint">phrase to translate</string>
     <string name="translate">translate</string>
+    <string name="error">Somethins went wrong</string>
+    <string name="no_connection">No connection</string>
 </resources>

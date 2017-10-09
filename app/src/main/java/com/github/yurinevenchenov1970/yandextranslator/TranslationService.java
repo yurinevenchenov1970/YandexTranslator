@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 public interface TranslationService {
 
     @FormUrlEncoded
-    @POST("@api/v1.5/tr.json/translate")
+    @POST("api/v1.5/tr.json/translate")
     Call<TranslationBean> getTranslation(@Field("key") String key,
                                          @Field("text") String text,
                                          @Field("lang") String lang,
