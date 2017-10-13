@@ -12,5 +12,7 @@ public interface MainView {
 
     void showError();
 
-   void showTranslation(String translatedText);
+    void showConnectionError();
+
+    void showTranslation(String translatedText);
 }

@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
+    public void showConnectionError() {
+        Toast.makeText(this, R.string.no_connection, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void showTranslation(String translatedText) {
         mTranslationTextView.setText(translatedText);
     }

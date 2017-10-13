@@ -12,6 +12,8 @@ public interface MainPresenter {
 
     void showError();
 
+    void showConnectionError();
+
     void showTranslation(String translatedText);
 
     void processTranslation(String sourceText);
