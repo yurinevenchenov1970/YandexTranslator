@@ -38,12 +38,27 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
+    public void processTranslation(String sourceText) {
+        mMainModel.processTranslation(sourceText);
+    }
+
+    @Override
     public void showTranslation(String translatedText) {
         mMainView.showTranslation(translatedText);
     }
 
     @Override
-    public void processTranslation(String sourceText) {
-        mMainModel.processTranslation(sourceText);
+    public void showDefaultLanguageChecked(boolean show) {
+        mMainView.showDefaultLanguageChecked(show);
+    }
+
+    @Override
+    public void getLanguage() {
+        mMainModel.isDefaultLanguageChecked();
+    }
+
+    @Override
+    public void changeLanguage(boolean isEnRu) {
+        mMainModel.setLang(isEnRu);
     }
 }

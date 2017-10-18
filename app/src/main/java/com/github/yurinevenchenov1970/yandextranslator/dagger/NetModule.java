@@ -1,7 +1,10 @@
 package com.github.yurinevenchenov1970.yandextranslator.dagger;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.preference.PreferenceManager;
 
 import com.github.yurinevenchenov1970.yandextranslator.TranslationService;
 
@@ -49,5 +52,11 @@ public class NetModule {
     @Provides
     ConnectivityManager provideConnectivityManager(Context context) {
         return (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    }
+
+    @Provides
+    @Singleton
+    SharedPreferences provideSharedPreferences(Application application){
+        return PreferenceManager.getDefaultSharedPreferences(application);
     }
 }

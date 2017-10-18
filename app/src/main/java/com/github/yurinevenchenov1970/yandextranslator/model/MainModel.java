@@ -1,5 +1,6 @@
 package com.github.yurinevenchenov1970.yandextranslator.model;
 
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
@@ -24,7 +25,9 @@ import retrofit2.Response;
 public class MainModel {
 
     private static final String KEY = "trnsl.1.1.20171009T090004Z.de131bc29593f731.2c1fb6516b3b53d4265182fc09e0f96e97c2a612";
-    private static final String LANG = "en-ru";
+    private static final String LANG_DEFAULT = "en-ru";
+    private static final String LANG_RU_EN = "ru-en";
+    private static final String LANG = "lang";
     private static final String FORMAT = "plain";
     private static final String OPTIONS = "1";
 
@@ -34,6 +37,9 @@ public class MainModel {
     TranslationService mService;
 
     @Inject
+    SharedPreferences mSharedPreferences;
+
+    @Inject
     ConnectivityManager mConnectivityManager;
 
     public MainModel(MainPresenter mainPresenter) {
@@ -41,10 +47,18 @@ public class MainModel {
         mMainPresenter = mainPresenter;
     }
 
+    public void setLang(boolean isEnRu) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(LANG, isEnRu);
+        editor.apply();
+        mMainPresenter.showDefaultLanguageChecked(isEnRu);
+    }
+
     public void processTranslation(String sourceText) {
         if (hasConnection()) {
             mMainPresenter.showProgress();
-            Call<TranslationBean> beanCall = mService.getTranslation(KEY, sourceText, LANG, FORMAT, OPTIONS);
+            String lang = isDefaultLanguageChecked() ? LANG_DEFAULT : LANG_RU_EN;
+            Call<TranslationBean> beanCall = mService.getTranslation(KEY, sourceText, lang, FORMAT, OPTIONS);
             beanCall.enqueue(new Callback<TranslationBean>() {
                 @Override
                 public void onResponse(@NonNull Call<TranslationBean> call, @NonNull Response<TranslationBean> response) {
@@ -72,6 +86,12 @@ public class MainModel {
         } else {
             mMainPresenter.showConnectionError();
         }
+    }
+
+    public boolean isDefaultLanguageChecked() {
+        boolean isDefaultChecked =  mSharedPreferences.getBoolean(LANG, true);
+        mMainPresenter.changeLanguage(isDefaultChecked);
+        return isDefaultChecked;
     }
 
     private boolean hasConnection() {

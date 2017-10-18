@@ -4,4 +4,7 @@
     <string name="translate">translate</string>
     <string name="error">Somethins went wrong</string>
     <string name="no_connection">No connection</string>
+    <string name="en_ru">en-ru</string>
+    <string name="ru_en">ru-en</string>
+    <string name="translate_ru">Перевести</string>
 </resources>
