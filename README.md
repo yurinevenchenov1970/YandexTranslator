@@ -2,7 +2,7 @@ Switch translating direction and input a word or even phrase to translate it usi
 
 
 
-![howdoesitwork](https://user-images.githubusercontent.com/29121233/31865689-6adc4ab6-b77b-11e7-8e40-b5326d0660df.gif)
+![howdoesitworkmin](https://user-images.githubusercontent.com/29121233/31866011-2d17f9b8-b781-11e7-8116-0d1db28809b9.gif)
 
 
 
